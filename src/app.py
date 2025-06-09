@@ -8,8 +8,12 @@ import numpy as np
 app = Flask(__name__)
 
 # Cargar el modelo previamente descargado
-with open("models/random_forest_classifier.sav", "rb") as f:
+import os
+
+model_path = os.path.join(os.path.dirname(__file__), 'models/random_forest_classifier.sav')
+with open(model_path, "rb") as f:
     model = pickle.load(f)
+
 
 @app.route('/', methods=['GET', 'POST'])
 def predict():
