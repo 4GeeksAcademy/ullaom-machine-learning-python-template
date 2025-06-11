@@ -12,7 +12,7 @@ app = Flask(__name__,
             static_folder=os.path.join(base_dir, "static"))
 
 # Ruta absoluta al modelo guardado
-model_path = os.path.join(base_dir, "src", "models", "random_forest_classifier.sav")
+model_path = os.path.join(base_dir, "models", "random_forest_classifier.sav")
 with open(model_path, "rb") as f:
     model = pickle.load(f)
 
