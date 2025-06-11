@@ -4,15 +4,15 @@ import numpy as np
 from flask import Flask, render_template, request
 
 # Directorio base del proyecto
-base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+base_dir = os.path.abspath(os.path.dirname(__file__))
 
-# Configurar Flask con las rutas correctas a templates y static
+# Configurar Flask con las rutas correctas
 app = Flask(__name__,
             template_folder=os.path.join(base_dir, "src", "templates"),
             static_folder=os.path.join(base_dir, "static"))
 
-# Ruta al modelo guardado
-model_path = os.path.join(base_dir, "models", "random_forest_classifier.sav")
+# Ruta absoluta al modelo guardado
+model_path = os.path.join(base_dir, "src", "models", "random_forest_classifier.sav")
 with open(model_path, "rb") as f:
     model = pickle.load(f)
 
