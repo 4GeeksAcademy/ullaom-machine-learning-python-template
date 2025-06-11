@@ -1,19 +1,20 @@
-#from utils import db_connect
-#engine = db_connect()
-
-from flask import Flask, render_template, request
+import os
 import pickle
 import numpy as np
+from flask import Flask, render_template, request
 
-app = Flask(__name__)
+# Directorio base del proyecto
+base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
-# Cargar el modelo previamente descargado
-import os
+# Configurar Flask con las rutas correctas a templates y static
+app = Flask(__name__,
+            template_folder=os.path.join(base_dir, "src", "templates"),
+            static_folder=os.path.join(base_dir, "static"))
 
-model_path = os.path.join(os.path.dirname(__file__), 'models/random_forest_classifier.sav')
+# Ruta al modelo guardado
+model_path = os.path.join(base_dir, "models", "random_forest_classifier.sav")
 with open(model_path, "rb") as f:
     model = pickle.load(f)
-
 
 @app.route('/', methods=['GET', 'POST'])
 def predict():
@@ -37,4 +38,5 @@ def predict():
 
     return render_template('index.html', prediction=prediction)
 
-
+if __name__ == '__main__':
+    app.run(debug=True)
