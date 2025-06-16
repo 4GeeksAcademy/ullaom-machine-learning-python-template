@@ -8,7 +8,7 @@ base_dir = os.path.abspath(os.path.dirname(__file__))
 
 # Configurar Flask con las rutas correctas
 app = Flask(__name__,
-            template_folder=os.path.join(base_dir, "src", "templates"),
+            template_folder=os.path.join(base_dir, "templates"),
             static_folder=os.path.join(base_dir, "static"))
 
 # Ruta absoluta al modelo guardado
